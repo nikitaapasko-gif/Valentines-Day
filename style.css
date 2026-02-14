@@ -1,0 +1,171 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --background-color: #fff0f3;
+    --text-color: #590d22;
+    --success-color: #2b9348;
+    --danger-color: #d00000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comfortaa', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    /* Prevent scrolling when button moves */
+    position: relative;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    padding: 0 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 60px;
+    /* Ensure space for buttons */
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#yes-btn {
+    background-color: var(--success-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(43, 147, 72, 0.4);
+    z-index: 20;
+}
+
+#yes-btn:hover {
+    transform: scale(1.1);
+    background-color: #237a3b;
+}
+
+#no-btn {
+    background-color: var(--danger-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(208, 0, 0, 0.4);
+    z-index: 20;
+    /* transition: all 0.1s ease; Remove transition for instant teleport if desired, or keep for smooth effect */
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+#overlay-message h1 {
+    color: white;
+}
+
+#overlay-success {
+    background-color: var(--primary-color);
+}
+
+#overlay-success h1 {
+    color: white;
+    font-size: 4rem;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Heart Animation */
+.heart {
+    position: absolute;
+    top: -10vh;
+    font-size: 2rem;
+    animation: fall linear forwards;
+    z-index: 101;
+    /* Above the overlay background */
+    color: white;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        /* Stack buttons on very small screens? Maybe request didn't ask for stacking but keeps them accessible */
+        gap: 15px;
+    }
+}
